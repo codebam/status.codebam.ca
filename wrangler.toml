@@ -1,0 +1,23 @@
+name = "status-codebam-ca"
+main = "src/index.js"
+compatibility_date = "2026-08-15"
+
+# Create the namespace with:
+#   npx wrangler kv namespace create STATUS_KV
+# then paste the returned id below.
+[[kv_namespaces]]
+binding = "STATUS_KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# Probe every monitored service every 15 minutes.
+[triggers]
+crons = ["*/15 * * * *"]
+
+# Serves the dashboard at https://status.codebam.ca
+# (requires the codebam.ca zone to exist in this Cloudflare account).
+[[routes]]
+pattern = "status.codebam.ca"
+custom_domain = true
+
+[observability]
+enabled = true

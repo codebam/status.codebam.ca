@@ -1,0 +1,20 @@
+{
+  "name": "status-codebam-ca",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Status page for codebam.ca services, running on a Cloudflare Worker with a 15-minute cron",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "node test/smoke.test.mjs",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  },
+  "allowScripts": {
+    "workerd@1.20260903.1": true,
+    "esbuild@0.28.1": true
+  }
+}
