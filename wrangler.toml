@@ -7,7 +7,7 @@ compatibility_date = "2026-08-15"
 # then paste the returned id below.
 [[kv_namespaces]]
 binding = "STATUS_KV"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "263699c324b147b093965d350aa698a3"
 
 # Probe every monitored service every 15 minutes.
 [triggers]
