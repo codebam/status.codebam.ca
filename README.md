@@ -1,7 +1,7 @@
 # status.codebam.ca
 
-Cloudflare Worker that monitors **seanbehan.ca**, **codebam.ca**, and
-**stream.codebam.ca** every 15 minutes and serves a status dashboard.
+Cloudflare Worker that monitors **seanbehan.ca** and **codebam.ca** every
+15 minutes and serves a status dashboard.
 
 ## How it works
 
@@ -54,7 +54,7 @@ local URL after `npm run dev` is the easiest smoke test.
 ## Cost
 
 Well within Cloudflare's free plan: 4 cron invocations/hour (~96/day),
-3 subrequests each, plus a handful of KV reads per dashboard visit.
+2 subrequests each, plus a handful of KV reads per dashboard visit.
 
 ## Customizing
 

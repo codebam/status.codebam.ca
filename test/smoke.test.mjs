@@ -23,7 +23,9 @@ class FakeKV {
 const env = { STATUS_KV: new FakeKV() };
 const assert = (c, msg) => { if (!c) { console.error('FAIL:', msg); process.exit(1); } console.log('ok  -', msg); };
 
-const t0 = Date.UTC(2026, 8, 3, 12, 0, 0);
+// Anchor to noon UTC today so the day keys line up with loadStatus()'s real clock.
+const today = new Date();
+const t0 = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate(), 12, 0, 0);
 await runChecks(env, t0);
 let st = await loadStatus(env);
 assert(st.services.every((s) => s.latest.state === 'up' && s.latest.status === 200), 'live sites all report up');
@@ -33,14 +35,13 @@ assert(st.services[0].recent.length === 1, '24h chart has entries');
 
 globalThis.fetch = async (url) => {
   if (String(url).includes('seanbehan')) return new Response('oops', { status: 500 });
-  if (String(url).includes('stream')) throw Object.assign(new Error('connection reset'), { name: 'ConnectionError' });
+  if (String(url).includes('codebam')) throw Object.assign(new Error('connection reset'), { name: 'ConnectionError' });
   return new Response('hi', { status: 200 });
 };
 await runChecks(env, t0 + 900_000);
 st = await loadStatus(env);
 const byName = Object.fromEntries(st.services.map((s) => [s.target.name, s.latest.state]));
-assert(byName['seanbehan.ca'] === 'down' && byName['stream.codebam.ca'] === 'down', '500 and thrown error => down');
-assert(byName['codebam.ca'] === 'up', '200 => up');
+assert(byName['seanbehan.ca'] === 'down' && byName['codebam.ca'] === 'down', '500 and thrown error => down');
 const sb = st.services.find((s) => s.target.name === 'seanbehan.ca');
 assert(sb.uptime > 0 && sb.uptime < 100, `uptime recalculated from history (${sb.uptime.toFixed(2)}%)`);
 assert(sb.days[89].checks === 2 && sb.days[89].down === 1, 'same-slot re-run deduped + rolled up');

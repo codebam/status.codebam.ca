@@ -129,14 +129,14 @@ export function renderPage(status) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>codebam status</title>
-<meta name="description" content="Live status of seanbehan.ca, codebam.ca and stream.codebam.ca, checked every 15 minutes.">
+<meta name="description" content="Live status of seanbehan.ca and codebam.ca, checked every 15 minutes.">
 <style>${CSS}</style>
 </head>
 <body>
 <main>
 <header>
   <h1>codebam status</h1>
-  <p>seanbehan.ca · codebam.ca · stream.codebam.ca — probed every 15 minutes</p>
+  <p>seanbehan.ca · codebam.ca — probed every 15 minutes</p>
 </header>
 ${banner}
 ${status.services.map(serviceCard).join('')}

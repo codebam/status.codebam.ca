@@ -1,7 +1,6 @@
 export const TARGETS = [
   { id: 'seanbehan-ca', name: 'seanbehan.ca', url: 'https://seanbehan.ca/' },
   { id: 'codebam-ca', name: 'codebam.ca', url: 'https://codebam.ca/' },
-  { id: 'stream-codebam-ca', name: 'stream.codebam.ca', url: 'https://stream.codebam.ca/' },
 ];
 
 export const CHECK_TIMEOUT_MS = 10_000;
